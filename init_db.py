@@ -12,7 +12,7 @@ if __name__ == '__main__':
     initialize_database()
 
 # adding the basic sender that will always be there
-from program.models import Sender
+from program.models import Sender, Customer
 
 s = Sender(name = 'Irre-Snirre Fixar', address = 'Tröskaregatan 65', city = 'Linköping', country = 'Sverige',
             email = 'ojaoweir@gmail.com', zip_code=58333, organisation_number='961002-2858',
@@ -20,4 +20,9 @@ s = Sender(name = 'Irre-Snirre Fixar', address = 'Tröskaregatan 65', city = 'Li
             complaint_link = 'https://i.imgur.com/JfHjOEP.jpg', logo_link = 'https://i.imgur.com/TtkQXrw.png')
 
 db.session.add(s)
+db.session.commit()
+
+c = Customer(name ="Per", address = "I huset", city = "Samma som snirr", country = "Se ovan", email="ojaoweir@gmail.com")
+
+db.session.add(c)
 db.session.commit()

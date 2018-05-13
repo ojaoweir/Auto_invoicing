@@ -1,4 +1,4 @@
-from .db_functions import dbAddCustomer, dbGetAllCustomers, dbGetCustomer
+from .db_functions import dbAddCustomer, dbGetAllCustomers, dbGetCustomer, dbAddService, dbCommit, dbCalculateInvoicePrice
 from .general_functions import drawLine, newLine, waitEnter
 
 def getCustomer():
@@ -46,10 +46,11 @@ def printAllCustomers():
 
 def getServices(invoice):
     services = []
-    nr_of_services = input("Ange hur många artiklar:")
+    nr_of_services = int(input("Ange hur många artiklar:"))
     for i in range(0,nr_of_services):
-        getAndAddService()
-    dbCommit()
+        newLine()
+        drawLine()
+        getAndAddService(invoice)
     dbCalculateInvoicePrice(invoice)
 
 def getAndAddService(invoice):

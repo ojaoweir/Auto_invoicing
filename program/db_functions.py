@@ -24,10 +24,11 @@ def dbAddService(service_name, amount, price_per, invoice):
     s = Service(service_name = service_name, price_per = price_per,
                 price_total = price_per*float(amount), amount = amount, invoice_id = invoice.id)
     db.session.add(s)
+    db.session.commit()
 
 def dbCommit():
     db.session.commit()
 
 def dbCalculateInvoicePrice(invoice):
-    invoice.setPrice()
+    Invoice.query.get(invoice.id).setPrice()
     dbCommit()

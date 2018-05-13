@@ -42,11 +42,15 @@ class Service(db.Model):
 class Invoice(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     price = db.Column(db.Float)
-    date = db.Column(db.DateTime, index = True, default = datetime.date)
+    date = db.Column(db.DateTime, index = True, default = datetime.now)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
 
     payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id)
 
     def setPrice(self):
-        for service in payed_service:
-            self.rice = price + service.price_total
+        price = 0
+        for service in self.payed_service:
+            price = price + service.price_total
+        self.price = price
+        print(price)
+        print(self.price)
