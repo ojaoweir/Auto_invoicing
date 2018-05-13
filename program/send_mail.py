@@ -3,6 +3,15 @@ from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+def get_data():
+    choice = input("Ange id till mottagare: (0 för att se lista, - för att skapa ny)")
+    if (choice == '0'):
+        print("här ska alla skriva ut")
+    elif (choice == '-'):
+        print("skapa ny")
+    else:
+        print("Du har valt person " + choice)
+
 def send_invoice():
     s=smtplib.SMTP(host='smtp.gmail.com', port=587)
     s.starttls()
@@ -45,3 +54,7 @@ def send_invoice():
     # Terminate the SMTP session and close the connection
     s.quit()
     #end email setup
+
+get_data()
+get_template()
+# send_invoice()
