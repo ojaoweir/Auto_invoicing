@@ -1,3 +1,1 @@
-from .send_mail import *
-
-send_invoice()
+from program import app, db
