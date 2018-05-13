@@ -9,6 +9,9 @@ class Customer(db.Model):
     country = db.Column(db.String(32), index = True, nullable = True)
     email = db.Column(db.String(64), index = True, nullable = False)
 
+    def __repr__(self):
+        return 'ID:{}\n{}, {}'.format(self.id, self.name, self.email)
+
 class Sender(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), index = True, nullable = False)
