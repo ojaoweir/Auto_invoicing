@@ -52,5 +52,3 @@ class Invoice(db.Model):
         for service in self.payed_service:
             price = price + service.price_total
         self.price = price
-        print(price)
-        print(self.price)

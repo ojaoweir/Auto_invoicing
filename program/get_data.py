@@ -1,5 +1,6 @@
 from .db_functions import dbAddCustomer, dbGetAllCustomers, dbGetCustomer, dbAddService, dbCommit, dbCalculateInvoicePrice
 from .general_functions import drawLine, newLine, waitEnter
+from getpass import getpass
 
 def getCustomer():
     newLine()
@@ -58,3 +59,8 @@ def getAndAddService(invoice):
     amount = int(input("Ange hur många av denna artikel: "))
     price_per = float(input("Ange pris per enhet: "))
     dbAddService(service_name, amount, price_per, invoice)
+
+def getPassword():
+    print("Ange ditt password till google: ")
+    password = getpass()
+    return password
