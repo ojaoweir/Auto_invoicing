@@ -27,10 +27,6 @@ class Sender(db.Model):
     complaint_link = db.Column(db.String(86), index = True, nullable = False)
     logo_link = db.Column(db.String(86), index = True, nullable = False)
 
-class Invoice(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    price = db.Column(db.Float, nullable = False)
-    date = db.Column(db.DateTime, index = True, default = datetime.date)
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -38,3 +34,19 @@ class Service(db.Model):
     price_per = db.Column(db.Float, nullable = False)
     price_total = db.Column(db.Float, nullable = False)
     amount = db.Column(db.Integer, nullable = False)
+    invoice_id = db.Column(db.Integer, db.ForeignKey('invoice.id'), nullable = False)
+
+    invoice = db.relationship("Invoice", backref="invoice_for_service", foreign_keys = [invoice_id])
+
+
+class Invoice(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    price = db.Column(db.Float)
+    date = db.Column(db.DateTime, index = True, default = datetime.date)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+
+    payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id)
+
+    def setPrice(self):
+        for service in payed_service:
+            self.rice = price + service.price_total

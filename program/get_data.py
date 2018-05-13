@@ -43,3 +43,17 @@ def printAllCustomers():
     newLine()
     waitEnter()
     return getCustomer()
+
+def getServices(invoice):
+    services = []
+    nr_of_services = input("Ange hur många artiklar:")
+    for i in range(0,nr_of_services):
+        getAndAddService()
+    dbCommit()
+    dbCalculateInvoicePrice(invoice)
+
+def getAndAddService(invoice):
+    service_name = input("Ange namn på artikel: ")
+    amount = int(input("Ange hur många av denna artikel: "))
+    price_per = float(input("Ange pris per enhet: "))
+    dbAddService(service_name, amount, price_per, invoice)
