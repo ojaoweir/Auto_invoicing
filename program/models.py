@@ -26,7 +26,13 @@ class Sender(db.Model):
     payment_method = db.Column(db.String(16), index = True, nullable = False)
     complaint_link = db.Column(db.String(86), index = True, nullable = False)
     logo_link = db.Column(db.String(86), index = True, nullable = False)
+    is_main = db.Column(db.Boolean, default = False)
 
+    def set_main(self):
+        self.is_main = True
+        
+    def remove_main(self):
+        self.is_main = False
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -43,7 +49,8 @@ class Invoice(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     price = db.Column(db.Float)
     date = db.Column(db.DateTime, index = True, default = datetime.now)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable = False)
+    sender_id = db.Column(db.Integer, db.ForeignKey('sender.id'), nullable = False)
 
     payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id)
 

@@ -1,4 +1,4 @@
-from .models import Customer, Invoice, Service
+from .models import Customer, Invoice, Service, Sender
 from program import db
 
 
@@ -8,14 +8,23 @@ def dbAddCustomer(name, address, city, country, email):
     db.session.commit()
     return c
 
+def dbGetInvoice(id):
+    return Invoice.query.get(id)
+
 def dbGetAllCustomers():
     return Customer.query.all()
 
 def dbGetCustomer(id):
     return Customer.query.get(id)
 
+def dbGetSender(id):
+    return Sender.query.get(id)
+
+def dbGetMainSender():
+    return Sender.query.filter_by(is_main=True).first().id
+
 def dbCreateAndGetInvoice(customer):
-    i = Invoice(customer_id = customer.id)
+    i = Invoice(customer_id = customer.id, sender_id = dbGetMainSender())
     db.session.add(i)
     db.session.commit()
     return i

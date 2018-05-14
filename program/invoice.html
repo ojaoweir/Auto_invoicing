@@ -3,10 +3,53 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>test1</title>
   </head>
   <body>
-    <h2>test2</h2>
-     test3
+    <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
+    <!-- TODO: OVAN ADD MÅTT -->
+    <!-- <div class="date grey-text">{{ invoice_date }}</div> -->
+    <div class="namebox">
+      <div class="namebox_namerow">{{ customer.name }}</div>
+      {{ customer.address }}
+      {{ customer.city }}
+      {{ customer.country }}
+    </div>
+    <h1 class="invoice-header">Faktura</h1>
+    <h3>#{{ invoice.id }}#</h3>
+    <div class="services-table">
+      <div class="services-table-header">
+        antal
+        tjänster
+        pris styck
+        pris tot
+      </div>
+      <div class="amount-of-service-list">
+        {% for service in services %}
+        <div class="service-amount">
+          {{ service.amount }}
+        </div>
+        {% endfor %}
+      </div>
+        <div class="name-of-service-list">
+          {% for service in services %}
+          <div class="service-name">
+            {{ service.service_name }}
+          </div>
+          {% endfor %}
+      </div>
+      <div class="price-per-service-list">
+        {% for service in services %}
+        <div class="service-price-per">
+          {{ service.preice_per }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="price-of-service-list">
+      {% for service in services %}
+      <div class="service-price">
+        {{ service.price_total }}
+      </div>
+      {% endfor %}
+    </div>
   </body>
 </html>
