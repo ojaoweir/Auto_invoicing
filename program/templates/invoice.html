@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="program/static/invoice.css">
   </head>
   <body>
     <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
@@ -15,7 +16,7 @@
       {{ customer.country }}
     </div>
     <h1 class="invoice-header">Faktura</h1>
-    <h3>#{{ invoice.id }}#</h3>
+    <h3 class="invoice-number">#{{ invoice.id }}#</h3>
     <div class="services-table">
       <div class="services-table-header">
         antal
