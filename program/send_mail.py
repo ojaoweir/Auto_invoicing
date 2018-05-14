@@ -3,7 +3,7 @@ from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_invoice():
+def send_invoice(template, password):
     s=smtplib.SMTP(host='smtp.gmail.com', port=587)
     s.starttls()
     s.login('codebuddyinfo@gmail.com', 'tddd83grupp9')
@@ -32,12 +32,12 @@ def send_invoice():
 
     # Record the MIME types of both parts - text/plain and text/html.
     part1 = MIMEText(text, 'plain')
-    part2 = MIMEText(html, 'html')
+    part2 = MIMEText(template, 'html')
 
     # Attach parts into message container.
     # According to RFC 2046, the last part of a multipart message, in this case
     # the HTML message, is best and preferred.
-    msg.attach(part1)
+    msg.attach(part2)
 
     s.send_message(msg)
     del msg
