@@ -15,16 +15,20 @@
       {{ customer.city }}
       {{ customer.country }}
     </div>
-    <h1 class="invoice-header">Faktura</h1>
-    <h3 class="invoice-number">#{{ invoice.id }}#</h3>
-    <div class="services-table">
-      <div class="services-table-header">
+    <div class="invoice-number-box" style="text-align:center;">
+      <div class="invoice-header" style="font-size: 3em; padding-bottom:0px;">Faktura</div>
+      <div class="invoice-number"style="font-size: 1.5em; color:grey;">#{{ invoice.id }}#</div>
+    </div>
+    <div class="services-table" style="border:solid; border-width:1px; border-color:black;">
         antal
         tjänster
         pris styck
         pris tot
       </div>
-      <div class="amount-of-service-list">
+      <div class="amount-of-service-list" style="width: 20%; height: auto; border-right:solid; border-width:1px; border-color:black">
+        <div class="amount-service-head" style="text-align: center; background-color:grey; font-size:1.5em; border-bottom: solid; border-width: 1px; border-color:black;">
+          antal
+        </div>
         {% for service in services %}
         <div class="service-amount">
           {{ service.amount }}
