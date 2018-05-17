@@ -3,7 +3,7 @@ from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-def send_invoice(template, password):
+def send_invoice(template, password, invoice_id, invoice_sender):
     s=smtplib.SMTP(host='smtp.gmail.com', port=587)
     s.starttls()
     s.login('codebuddyinfo@gmail.com', 'tddd83grupp9')
@@ -13,7 +13,7 @@ def send_invoice(template, password):
     receiver = "ojaoweir@gmail.com"
 
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = 'invoice'
+    msg['Subject'] = 'Ny faktura från ' + invoice_sender + ', id: #' + str(invoice_id) + '#'
     msg['From'] = sender
     msg['To'] = receiver
 

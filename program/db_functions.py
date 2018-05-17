@@ -41,3 +41,7 @@ def dbCommit():
 def dbCalculateInvoicePrice(invoice):
     Invoice.query.get(invoice.id).setPrice()
     dbCommit()
+
+def dbGetSenderNameFromInvoice(id):
+    sender_id = dbGetInvoice(id).sender_id
+    return dbGetSender(sender_id).name
