@@ -9,11 +9,13 @@ def generateInvoiceTemplate(invoice):
     customer = dbGetCustomer(invoice.customer_id)
     services = invoice.payed_service
     total_price_for_all = invoice.price
+    invoice_date = invoice.getDate()
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("program/templates/invoice.html")
     template_variables = {"sender": sender,
                         "customer": customer,
                         "invoice": invoice,
                         "services":services,
-                        "total_price_for_all": total_price_for_all}
+                        "total_price_for_all": total_price_for_all,
+                        "invoice_date": invoice_date}
     return template.render(template_variables)

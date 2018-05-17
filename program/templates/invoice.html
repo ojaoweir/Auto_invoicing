@@ -5,14 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
-    <!-- TODO: OVAN ADD MÅTT -->
-    <!-- <div class="date grey-text">{{ invoice_date }}</div> -->
-    <div class="namebox" style="min-width: 25%; max-width: 45%; padding: 7px; margin-right: 0; margin-left: auto; border: solid; border-color: black; border-width: 1px;">
-      <div class="namebox_namerow" style="margin-bottom:10px;">{{ customer.name }}</div>
-      {{ customer.address }} <br>
-      {{ customer.city }} <br>
-      {{ customer.country }}
+    <div class="invoice-header" style="display:flex;">
+      <div class="surround-logo-div" style="width: 50%; margin-left:5%;">
+        <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}} style="max-width: 100%; height:auto;"></img>
+      </div>
+      <div class="surround-namebox-div" style="margin-right: 5%; margin-left: auto; width: 25%; max-width: 45%;">
+        <div class="date" style="color:darkgrey; font-size:1em; text-align:right; margin-bottom: 10px;">{{ invoice_date }}</div>
+        <div class="namebox" style="padding: 7px; border: solid; border-color: black; border-width: 1px;">
+          <div class="namebox_namerow" style="margin-bottom:10px;">{{ customer.name }}</div>
+          {{ customer.address }} <br>
+          {{ customer.city }} <br>
+          {{ customer.country }}
+        </div>
+      </div>
     </div>
     <div class="invoice-number-box" style="text-align:center;">
       <div class="invoice-header" style="font-size: 3em; padding-bottom:0px;">Faktura</div>

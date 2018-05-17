@@ -1,5 +1,6 @@
 from program import db
 from datetime import datetime
+from sqlalchemy import Date, cast
 
 class Customer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,7 +31,7 @@ class Sender(db.Model):
 
     def set_main(self):
         self.is_main = True
-        
+
     def remove_main(self):
         self.is_main = False
 
@@ -59,3 +60,6 @@ class Invoice(db.Model):
         for service in self.payed_service:
             price = price + service.price_total
         self.price = price
+
+    def getDate(self):
+        return self.date.date()

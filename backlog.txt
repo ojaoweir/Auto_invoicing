@@ -1,1 +1,4 @@
 avrunda pris 2 decimaler
+fixa så man kan logga in på mailen
+kolla vad som händer om man lägger in massor services
+fixa så man kan ändra mainsender
