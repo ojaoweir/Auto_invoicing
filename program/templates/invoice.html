@@ -45,7 +45,7 @@
     </div>
     <div class="total-price-block-outside-border" style="margin-left:auto; margin-right:0; width:60%;">
       <div class="total-price-block" style="text-align:right; font-size: 1.5em; border: solid; border-color:black; border-width:1px;">
-        <div class="total-price" style="border-bottom: solid; display:flex; border-width:1px;">
+        <div class="total-price" style="border-bottom: solid; display:flex;">
           <div class="total-price-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
             Totalt belopp
           </div>
@@ -57,7 +57,7 @@
           <div class="total-price-vat-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
             Totalt belopp inklusive moms*
           </div>
-          <div class="total-price-vat-sum" style="width: 25%;">
+          <div class="total-price-vat-sum" style="min-width: 25%;">
             {{ total_price_for_all }}
           </div>
         </div>
@@ -77,10 +77,26 @@
         {{ total_price_for_all }} kr
       </div>
     </div>
-    <div class="disclosure-text" style="font-size:1em; color:darkgrey; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
+    <div class="disclosure-text" style="text-align:center; color:darkgrey; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
       Inbetalning ska ske snabbast möjligt. Vid för lång väntan kommer fakturan vidarebefordras till Hubbe. Hubbe är läskig. Vid eventuella klagomål eller frågor
       <a href={{sender.complaint_link}} style="text-decoration: underline; color:blue;">klicka här.</a>
     </div>
-
+    <div class="invoice-footer" style="text-align:center; margin-top:15px; color:darkgrey; font-size:0.7em;">
+      <div class="invoice-footer-top" style="display: flex;">
+        <div class="sender-address" style="width:50%;">
+          {{ sender.name }} <br>
+          {{ sender.address }} <br>
+          {{ sender.zip_code}} {{ sender.city }}
+        </div>
+        <div class="sender-contact" style="width:50%;">
+          OrgNr: {{ sender.organisation_number }} <br>
+          Epost: {{ sender.email }} <br>
+          Telnr: {{ sender.phone_number }}
+        </div>
+      </div>
+      <div class="invoice-footer-bottom" style="margin-top: 10px;">
+        {{sender.payment_method}}: {{sender.account_number}}
+      </div>
+    </div>
   </body>
 </html>
