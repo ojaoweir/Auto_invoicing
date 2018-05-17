@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="/static/invoice.css">
   </head>
   <body>
     <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
     <!-- TODO: OVAN ADD MÅTT -->
     <!-- <div class="date grey-text">{{ invoice_date }}</div> -->
-    <div class="namebox">
-      <div class="namebox_namerow">{{ customer.name }}</div>
-      {{ customer.address }}
-      {{ customer.city }}
+    <div class="namebox" style="min-width: 25%; max-width: 45%; padding: 7px; margin-right: 0; margin-left: auto; border: solid; border-color: black; border-width: 1px;">
+      <div class="namebox_namerow" style="margin-bottom:10px;">{{ customer.name }}</div>
+      {{ customer.address }} <br>
+      {{ customer.city }} <br>
       {{ customer.country }}
     </div>
     <div class="invoice-number-box" style="text-align:center;">
@@ -57,7 +56,7 @@
           <div class="total-price-vat-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
             Totalt belopp inklusive moms*
           </div>
-          <div class="total-price-vat-sum" style="min-width: 25%;">
+          <div class="total-price-vat-sum" style="width: 25%;">
             {{ total_price_for_all }}
           </div>
         </div>
