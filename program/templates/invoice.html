@@ -45,16 +45,16 @@
     </div>
     <div class="total-price-block-outside-border" style="margin-left:auto; margin-right:0; width:60%;">
       <div class="total-price-block" style="text-align:right; font-size: 1.5em; border: solid; border-color:black; border-width:1px;">
-        <div class="total-price" style="border-bottom: solid; display:flex;">
-          <div class="total-price-sum-text" style="border-right:solid; width: 75%;">
+        <div class="total-price" style="border-bottom: solid; display:flex; border-width:1px;">
+          <div class="total-price-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
             Totalt belopp
           </div>
           <div class="total-price-sum" style="width: 25%;">
             {{ total_price_for_all }}
           </div>
         </div>
-        <div class="total-price-vat" style="border-bottom: solid; display:flex;">
-          <div class="total-price-vat-sum-text" style="border-right:solid; width: 75%;">
+        <div class="total-price-vat" style="display:flex;">
+          <div class="total-price-vat-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
             Totalt belopp inklusive moms*
           </div>
           <div class="total-price-vat-sum" style="width: 25%;">
@@ -66,5 +66,21 @@
         *Tjänster säljes svart, ingen moms betalas
       </div>
     </div>
+    <div class="payment-details-row" style="display:flex; margin-top: 50px; text-align: center; border: solid; border-color:black; border-width:1px; font-size:1.5em;">
+      <div class="payment-method" style="border-right:solid; border-width:1px; font-weight:bold; width:30%;">
+        {{ sender.payment_method }}
+      </div>
+      <div class="payment-account" style="border-right:solid; border-width:1px; width: 40%;">
+        {{ sender.account_number }}
+      </div>
+      <div class="payment-account" style="width:30%;">
+        {{ total_price_for_all }} kr
+      </div>
+    </div>
+    <div class="disclosure-text" style="font-size:1em; color:darkgrey; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
+      Inbetalning ska ske snabbast möjligt. Vid för lång väntan kommer fakturan vidarebefordras till Hubbe. Hubbe är läskig. Vid eventuella klagomål eller frågor
+      <a href={{sender.complaint_link}} style="text-decoration: underline; color:blue;">klicka här.</a>
+    </div>
+
   </body>
 </html>
