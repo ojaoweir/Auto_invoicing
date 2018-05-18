@@ -5,4 +5,4 @@ def newLine():
     print('\n')
 
 def waitEnter():
-    input()
+    input("Tryck enter för att förtsätta...")

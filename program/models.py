@@ -11,7 +11,7 @@ class Customer(db.Model):
     email = db.Column(db.String(64), index = True, nullable = False)
 
     def __repr__(self):
-        return 'ID:{}\n{}, {}'.format(self.id, self.name, self.email)
+        return 'ID:{}\n{} \n {}'.format(self.id, self.name, self.email)
 
 class Sender(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +25,7 @@ class Sender(db.Model):
     phone_number = db.Column(db.String(16), index = True, nullable = False)
     account_number = db.Column(db.String(16), index = True, nullable = False)
     payment_method = db.Column(db.String(16), index = True, nullable = False)
-    complaint_link = db.Column(db.String(86), index = True, nullable = False)
+    complaint_link = db.Column(db.String(86), index = True, nullable = False, default = "https://i.imgur.com/JfHjOEP.jpg")
     logo_link = db.Column(db.String(86), index = True, nullable = False)
     is_main = db.Column(db.Boolean, default = False)
 
@@ -34,6 +34,9 @@ class Sender(db.Model):
 
     def remove_main(self):
         self.is_main = False
+
+    def __repr__(self):
+        return 'ID:{}\n {} \n {} \n {}: {} \n Main:{}'.format(self.id, self.name, self.email, self.payment_method, self.account_number, self.is_main)
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -45,6 +48,9 @@ class Service(db.Model):
 
     invoice = db.relationship("Invoice", backref="invoice_for_service", foreign_keys = [invoice_id])
 
+    def __repr__(self):
+        return '{} {} {}'.format(self.amount, self.service_name, self.price_total)
+
 
 class Invoice(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -54,6 +60,9 @@ class Invoice(db.Model):
     sender_id = db.Column(db.Integer, db.ForeignKey('sender.id'), nullable = False)
 
     payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id)
+
+    def __repr__(self):
+        return 'ID:{}\nmottagare:{}\ndatum:{}\npris:{}\n{}'.format(self.id, self.customer_id, self.date, self.price, self.payed_service)
 
     def setPrice(self):
         price = 0

@@ -10,4 +10,5 @@ getServices(invoice)
 invoice = dbGetInvoice(invoice.id)
 password = getPassword()
 template = generateInvoiceTemplate(invoice)
-send_invoice(template, password, invoice.id, dbGetSenderNameFromInvoice(invoice.id))
+subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
+send_invoice(template, password, subject)

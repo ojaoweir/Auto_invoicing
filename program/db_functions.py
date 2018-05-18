@@ -1,12 +1,13 @@
 from .models import Customer, Invoice, Service, Sender
 from program import db
 
+def dbGetAllInvoices():
+    return Invoice.query.all()
 
 def dbAddCustomer(name, address, city, country, email):
     c = Customer(name = name, address = address, city = city, country = country, email = email)
     db.session.add(c)
     db.session.commit()
-    return c
 
 def dbGetInvoice(id):
     return Invoice.query.get(id)
@@ -14,11 +15,25 @@ def dbGetInvoice(id):
 def dbGetAllCustomers():
     return Customer.query.all()
 
+def dbGetAllSenders():
+    return Sender.query.all()
+
+def dbChangeMain(new_main):
+    old_main = dbGetMainSender()
+    dbGetSender(old_main).remove_main()
+    dbGetSender(new_main).set_main()
+    db.session.commit()
+
 def dbGetCustomer(id):
     return Customer.query.get(id)
 
 def dbGetSender(id):
     return Sender.query.get(id)
+
+def dbAddSender(name, address, city, zip_code, country, email, phone_number, organisation_number, payment_method,account_number, complaint_link, logo_link):
+    s = Sender(name=name, address=address, city=city, organisation_number=organisation_number, zip_code=zip_code, country=country, email=email, phone_number=phone_number, payment_method=payment_method,account_number=account_number, complaint_link = complaint_link, logo_link = logo_link)
+    db.session.add(s)
+    db.session.commit()
 
 def dbGetMainSender():
     return Sender.query.filter_by(is_main=True).first().id
