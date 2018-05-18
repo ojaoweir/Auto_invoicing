@@ -1,6 +1,7 @@
 from .db_functions import *
 from .general_functions import drawLine, newLine, waitEnter
 from getpass import getpass
+from .send_mail import resendMailInvoice
 
 def getCustomer():
     newLine()
@@ -147,4 +148,6 @@ def resendInvoice():
         printAllInvoices()
         resendInvoice()
     else:
-        resendMailInvoice(int(choice))
+        print("Ange lösenord för: " + dbGetSenderEmailFromInvoice(int(choice)))
+        password = getPassword()
+        resendMailInvoice(int(choice), password)

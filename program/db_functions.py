@@ -60,3 +60,7 @@ def dbCalculateInvoicePrice(invoice):
 def dbGetSenderNameFromInvoice(id):
     sender_id = dbGetInvoice(id).sender_id
     return dbGetSender(sender_id).name
+
+def dbGetSenderEmailFromInvoice(id):
+    sender_id = dbGetInvoice(id).sender_id
+    return dbGetSender(sender_id).email
