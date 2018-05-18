@@ -23,29 +23,31 @@
       <div class="invoice-header" style="font-size: 3em; padding-bottom:0px;">Faktura</div>
       <div class="invoice-number"style="font-size: 1.5em; color:grey;">#{{ invoice.id }}#</div>
     </div>
-      <div class="services-table" style="text-align: center; border:solid; border-width:1px; border-color:grey; min-height: 300px;">
-        <div class="services-table-head" style="display:flex; background-color: lightgrey; font-size:1.5em; border-bottom: solid; border-width: 1px; border-color:black;">
-          <div class="amount-of-service-head" style="width: 10%;"> antal </div>
-          <div class="name-of-service-head" style="width: 60%;"> tjänst </div>
-          <div class="price-per-service-head" style="width: 15%;"> pris styck </div>
-          <div class="price-tot-of-service-head" style="width: 15%;"> pris tot </div>
-        </div>
+    <div class="services-table" style="text-align: center; border:solid; border-width:1px; border-color:grey; min-height: 300px;">
+      <div class="services-table-head" style="display:flex; background-color: lightgrey; font-size:1.5em; border-bottom: solid; border-width: 1px; border-color:black;">
+        <div class="amount-of-service-head" style="width: 10%;"> antal </div>
+        <div class="name-of-service-head" style="width: 60%;"> tjänst </div>
+        <div class="price-per-service-head" style="width: 15%;"> pris styck </div>
+        <div class="price-tot-of-service-head" style="width: 15%;"> pris tot </div>
+      </div>
+      <div class="all-services-list">
         {% for service in services %}
-        <div class="service-row" style="display: flex">
-          <div class="service-amount" style="width: 10%;">
-            {{ service.amount }}
+          <div class="service-row" style="display: flex">
+            <div class="service-amount" style="width: 10%;">
+              {{ service.amount }}
+            </div>
+            <div class="service-name" style="width: 60%;">
+              {{ service.service_name }}
+            </div>
+            <div class="service-price-per" style="width: 15%;">
+              {{ service.price_per }}
+            </div>
+            <div class="service-price-tot" style="width: 15%;">
+              {{ service.price_total }}
+            </div>
           </div>
-          <div class="service-name" style="width: 60%;">
-            {{ service.service_name }}
-          </div>
-          <div class="service-price-per" style="width: 15%;">
-            {{ service.price_per }}
-          </div>
-          <div class="service-price-tot" style="width: 15%;">
-            {{ service.price_total }}
-          </div>
-          {% endfor %}
-        </div>
+        {% endfor %}
+      </div>
     </div>
     <div class="total-price-block-outside-border" style="margin-left:auto; margin-right:0; width:60%;">
       <div class="total-price-block" style="text-align:right; font-size: 1.5em; border: solid; border-color:black; border-width:1px;">
