@@ -2,15 +2,24 @@ Auto_invoicing
 
 Python is required to run this program
 
-Start a virtual environment
-  python -m venv venv
+For first time run the setup.bat file. If that does not work, do the following
 
-Source that virtual environment
-  source venv/bin/activate (linux/mac)
-  venv\Scripts\activate (windows)
+  Start a virtual environment
+    python -m venv venv
 
-Install packages included in requirements.txt
-  pip install -r requirement.txt  
-    (I had to upgrade setuptools for weasyprint to work 'pip install --upgrade setuptools')
+  Source that virtual environment
+    source venv/bin/activate (linux/mac)
+    venv\Scripts\activate (windows)
 
-    
+  Install packages included in requirements.txt
+    pip install -r requirement.txt  
+      (I had to upgrade setuptools for weasyprint to work 'pip install --upgrade setuptools')
+
+
+To start the app run the launch_application.bat
+  if that does not work do following
+  enter the folder "application"
+    start cmd here
+      enter python run.py
+
+To enter new customer, account to send from, or change account to send from enter adminView
