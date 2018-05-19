@@ -7,32 +7,45 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def resendMailInvoice(id, password):
+    server = startServer(password)
     invoice = dbGetInvoice(id)
     template = generateInvoiceTemplate(invoice)
+    # TODO: FIX BELOW SO IT IS DYNAMIC
+    sender = "ojaoweir@gmail.com"
+    receiver = "ojaoweir@gmail.com"
     subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
-    send_invoice(template, password, subject)
+    sendMail(template, subject, sender, receiver, server)
+    closeServer(server)
     newLine()
     print("Följande faktura har skickats om:")
     print(invoice)
     waitEnter()
 
 def sendInvoices(invoices, password):
-    server =smtplib.SMTP(host='smtp.gmail.com', port=587)
-    server.starttls()
-    server.login('codebuddyinfo@gmail.com', 'tddd83grupp9')
+    server = startServer(password)
+    # TODO: FIX BELOW SO IT IS DYNAMIC
     sender = "ojaoweir@gmail.com"
     receiver = "ojaoweir@gmail.com"
     for invoice in invoices:
         invoice = dbGetInvoice(invoice.id)
         template = generateInvoiceTemplate(invoice)
         subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
-        sendMail(template, password, subject, sender, receiver, server)
+        sendMail(template, subject, sender, receiver, server)
     # Terminate the SMTP session and close the connection
-    server.quit()
+
+    closeServer(server)
     #end email setup
 
+def closeServer(server):
+    server.quit()
 
-def sendMail(template, password, subject, sender, receiver, server):
+def startServer(password):
+    server =smtplib.SMTP(host='smtp.gmail.com', port=587)
+    server.starttls()
+    server.login('codebuddyinfo@gmail.com', 'tddd83grupp9')
+    return server
+
+def sendMail(template, subject, sender, receiver, server):
 
 
     msg = MIMEMultipart('alternative')

@@ -139,6 +139,7 @@ def adminView():
         enterNewSender()
     elif (choice == '4'):
         resendInvoice()
+        return adminView()
     elif (choice == '5'):
         return getCustomer()
     else:
