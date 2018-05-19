@@ -1,5 +1,7 @@
 Auto_invoicing
 to abort anytime press ctrl+c
+  To restart after that enter 'python run.py'
+    otherwise just close the terminal
 Python is required to run this program
 This program only works for google emails
   Access for less secure apps needs to be turned on for sender emails

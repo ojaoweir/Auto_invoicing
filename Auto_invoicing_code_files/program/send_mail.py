@@ -9,6 +9,8 @@ import sys
 
 # resends the invoice with given id
 def resendMailInvoice(id, password):
+    newLine()
+    print("Skickar fakturor...")
     # generating the invoice
     invoice = dbGetInvoice(id)
     template = generateInvoiceTemplate(invoice)
@@ -27,6 +29,8 @@ def resendMailInvoice(id, password):
     waitEnter()
 
 def sendInvoices(invoices, password, server):
+    newLine()
+    print("Skickar fakturor...")
     sender = dbGetMainSenderEmail()
     for invoice in invoices:
         # generating the invoice
