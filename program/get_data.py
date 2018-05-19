@@ -15,11 +15,13 @@ def getCustomer():
         customers = adminView()
     else:
         customers = separateCustomers(choice)
+        newLine()
+        print("Du har valt följande personer:")
+        drawLine()
         for customer in customers:
-            newLine()
-            print("Du har valt person " + str(customer.id) + ":")
             print(customer)
             drawLine()
+        newLine()
     return customers
 
 def enterNewCustomer():

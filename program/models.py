@@ -49,7 +49,7 @@ class Service(db.Model):
     invoice = db.relationship("Invoice", backref="invoice_for_service", foreign_keys = [invoice_id])
 
     def __repr__(self):
-        return '{} {} {}'.format(self.amount, self.service_name, self.price_total)
+        return '{}st {} {}kr tot'.format(self.amount, self.service_name, self.price_total)
 
 
 class Invoice(db.Model):
