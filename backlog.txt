@@ -7,3 +7,4 @@ fixa så error lyfts om fel password
 uppdatera requirements
 fixa så den faktiskt skickar från senders mail
 flera mottagare samtidigt
+ta bort onödiga imports

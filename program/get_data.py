@@ -12,14 +12,15 @@ def getCustomer():
     if (choice == '0'):
         return printAllCustomers()
     elif (choice == 'XXX'):
-        customer = adminView()
+        customers = adminView()
     else:
-        newLine()
-        customer = dbGetCustomer(choice)
-        print("Du har valt person " + choice + ":")
-        print(customer)
-        drawLine()
-    return customer
+        customers = separateCustomers(choice)
+        for customer in customers:
+            newLine()
+            print("Du har valt person " + str(customer.id) + ":")
+            print(customer)
+            drawLine()
+    return customers
 
 def enterNewCustomer():
     newLine()
@@ -73,20 +74,22 @@ def printAllInvoices():
     newLine()
     waitEnter()
 
-def getServices(invoice):
+def getServices(invoices):
     services = []
     nr_of_services = int(input("Ange hur många artiklar:"))
     for i in range(0,nr_of_services):
         newLine()
         drawLine()
-        getAndAddService(invoice)
-    dbCalculateInvoicePrice(invoice)
+        getAndAddService(invoices)
+    for invoice in invoices:
+        dbCalculateInvoicePrice(invoice)
 
-def getAndAddService(invoice):
+def getAndAddService(invoices):
     service_name = input("Ange namn på artikel: ")
     amount = int(input("Ange hur många av denna artikel: "))
     price_per = float(input("Ange pris per enhet: "))
-    dbAddService(service_name, amount, price_per, invoice)
+    for invoice in invoices:
+        dbAddService(service_name, amount, price_per, invoice)
 
 def getPassword():
     print("Ange ditt password till google: ")
@@ -140,7 +143,8 @@ def adminView():
         return getCustomer()
     else:
         print("felaktig input")
-    return adminView()
+        return adminView()
+
 
 def resendInvoice():
     choice = input("Ange id på den faktura du vill skicka igen: \n(0 för att se alla)\n")
@@ -151,3 +155,15 @@ def resendInvoice():
         print("Ange lösenord för: " + dbGetSenderEmailFromInvoice(int(choice)))
         password = getPassword()
         resendMailInvoice(int(choice), password)
+
+def separateCustomers(input):
+    input_customer = ''
+    customers = []
+    for char in input:
+        if not char == ' ':
+            input_customer = input_customer + char
+        else:
+            customers.append(dbGetCustomer(int(input_customer)))
+            input_customer = ''
+    customers.append(dbGetCustomer(int(input_customer)))
+    return customers

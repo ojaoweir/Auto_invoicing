@@ -11,7 +11,7 @@ class Customer(db.Model):
     email = db.Column(db.String(64), index = True, nullable = False)
 
     def __repr__(self):
-        return 'ID:{}\n{} \n {}'.format(self.id, self.name, self.email)
+        return 'ID:{} \n{} \n {}'.format(self.id, self.name, self.email)
 
 class Sender(db.Model):
     id = db.Column(db.Integer, primary_key=True)

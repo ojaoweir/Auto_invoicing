@@ -38,11 +38,14 @@ def dbAddSender(name, address, city, zip_code, country, email, phone_number, org
 def dbGetMainSender():
     return Sender.query.filter_by(is_main=True).first().id
 
-def dbCreateAndGetInvoice(customer):
-    i = Invoice(customer_id = customer.id, sender_id = dbGetMainSender())
-    db.session.add(i)
+def dbCreateAndGetInvoice(customers):
+    invoices = []
+    for customer in customers:
+        invoice = Invoice(customer_id = customer.id, sender_id = dbGetMainSender())
+        db.session.add(invoice)
+        invoices.append(invoice)
     db.session.commit()
-    return i
+    return invoices
 
 def dbAddService(service_name, amount, price_per, invoice):
     s = Service(service_name = service_name, price_per = price_per,
