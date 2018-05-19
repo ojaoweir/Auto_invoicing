@@ -1,8 +1,7 @@
 avrunda pris 2 decimaler
 uppdatera readme
-fixa bat för att göra setup
-lägg till kommentarer
+fixa bat fï¿½r att gï¿½ra setup
+lï¿½gg till kommentarer
 uppdatera requirements
-fixa så den faktiskt skickar från senders mail
-ta bort onödiga imports
-göra någon typ av no-reply?
+ta bort onï¿½diga imports
+gï¿½ra nï¿½gon typ av no-reply?

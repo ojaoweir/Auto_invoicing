@@ -4,6 +4,7 @@ from program import db
 def dbGetAllInvoices():
     return Invoice.query.all()
 
+# creates a new customer in database
 def dbAddCustomer(name, address, city, country, email):
     c = Customer(name = name, address = address, city = city, country = country, email = email)
     db.session.add(c)
@@ -18,6 +19,8 @@ def dbGetAllCustomers():
 def dbGetAllSenders():
     return Sender.query.all()
 
+# Changes which sender from which new invoices will be sent From
+# resent invoices will be sent from their original sender
 def dbChangeMain(new_main):
     old_main = dbGetMainSender()
     dbGetSender(old_main).remove_main()
@@ -30,6 +33,7 @@ def dbGetCustomer(id):
 def dbGetSender(id):
     return Sender.query.get(id)
 
+# creates a new sender in database
 def dbAddSender(name, address, city, zip_code, country, email, phone_number, organisation_number, payment_method,account_number, complaint_link, logo_link):
     s = Sender(name=name, address=address, city=city, organisation_number=organisation_number, zip_code=zip_code, country=country, email=email, phone_number=phone_number, payment_method=payment_method,account_number=account_number, complaint_link = complaint_link, logo_link = logo_link)
     db.session.add(s)
@@ -41,6 +45,7 @@ def dbGetMainSender():
 def dbGetMainSenderEmail():
     return Sender.query.filter_by(is_main=True).first().email
 
+# creates a new invoice in database
 def dbCreateAndGetInvoice(customers):
     invoices = []
     for customer in customers:
@@ -50,6 +55,7 @@ def dbCreateAndGetInvoice(customers):
     db.session.commit()
     return invoices
 
+# creates new services connected to given invoice
 def dbAddService(service_name, amount, price_per, invoice):
     s = Service(service_name = service_name, price_per = price_per,
                 price_total = price_per*float(amount), amount = amount, invoice_id = invoice.id)
@@ -59,6 +65,7 @@ def dbAddService(service_name, amount, price_per, invoice):
 def dbCommit():
     db.session.commit()
 
+# updates the total price on an invoice
 def dbCalculateInvoicePrice(invoice):
     Invoice.query.get(invoice.id).setPrice()
     dbCommit()

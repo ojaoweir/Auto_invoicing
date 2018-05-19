@@ -3,19 +3,23 @@ from .general_functions import drawLine, newLine, waitEnter
 from getpass import getpass
 from .send_mail import resendMailInvoice
 
+# Collect which customers that will receive the invoice
 def getCustomer():
     newLine()
     drawLine()
     print('VÄLJ MOTTAGARE')
     drawLine()
+    # Collects a string of ID:s
     choice = input("Ange id till en eller flera mottagare (separera med space): \n (0 för att se lista, 'XXX' för adminview)\n")
     if (choice == '0'):
         return printAllCustomers()
     elif (choice == 'XXX'):
         customers = adminView()
     else:
+        # seperates all the received ID:s
         customers = separateCustomers(choice)
         newLine()
+        # Print confirmation
         print("Du har valt följande personer:")
         drawLine()
         for customer in customers:
@@ -24,6 +28,7 @@ def getCustomer():
         newLine()
     return customers
 
+# function to enter a new customer to the database
 def enterNewCustomer():
     newLine()
     drawLine()
@@ -36,6 +41,7 @@ def enterNewCustomer():
     email = input("Ange email: ")
     dbAddCustomer(name, address, city, country, email)
 
+# prints all customers in terminal
 def printAllCustomers():
     newLine()
     drawLine()
@@ -50,6 +56,7 @@ def printAllCustomers():
     waitEnter()
     return getCustomer()
 
+# prints all senders in terminal
 def printAllSenders():
     newLine()
     drawLine()
@@ -63,6 +70,7 @@ def printAllSenders():
     newLine()
     waitEnter()
 
+# prints all invoices in terminal
 def printAllInvoices():
     newLine()
     drawLine()
@@ -76,6 +84,7 @@ def printAllInvoices():
     newLine()
     waitEnter()
 
+# Collects all services for an invoice
 def getServices(invoices):
     services = []
     nr_of_services = int(input("Ange hur många artiklar:"))
@@ -86,6 +95,7 @@ def getServices(invoices):
     for invoice in invoices:
         dbCalculateInvoicePrice(invoice)
 
+# Collects a service for an invoice, one a the time
 def getAndAddService(invoices):
     service_name = input("Ange namn på artikel: ")
     amount = int(input("Ange hur många av denna artikel: "))
@@ -93,11 +103,14 @@ def getAndAddService(invoices):
     for invoice in invoices:
         dbAddService(service_name, amount, price_per, invoice)
 
+# Function for entering password without it being shown
 def getPassword(sender_mail):
     print("Ange ditt password till " + sender_mail + ":")
     password = getpass()
     return password
 
+# Changes which sender all mails will be sent from. Resent invoices
+# will be sent from their original sender
 def changeMainSender():
     sender_id = int(input("Ange vilken sender du vill ska bli nya main:"))
     dbChangeMain(sender_id)
@@ -105,6 +118,7 @@ def changeMainSender():
     print(dbGetSender(dbGetMainSender()))
     waitEnter()
 
+# function for entering a new sender
 def enterNewSender():
     newLine()
     drawLine()
@@ -127,6 +141,7 @@ def enterNewSender():
     print("Om du vill att nya fakturor ska skicka från denna måste du uppdatera det i adminView...")
     waitEnter()
 
+# Opens the "AdminView"
 def adminView():
     newLine()
     drawLine()
@@ -149,6 +164,7 @@ def adminView():
         print("felaktig input")
     return adminView()
 
+# Prints a list of all invoice that has been sent and to what email
 def printSendConfirmation(invoices):
     newLine()
     drawLine()
@@ -157,6 +173,7 @@ def printSendConfirmation(invoices):
     drawLine()
     print("Stänger av programmet..")
 
+# function to enter which invoice will be sent again
 def resendInvoice():
     choice = input("Ange id på den faktura du vill skicka igen: \n(0 för att se alla)\n")
     if (choice == '0'):
@@ -166,6 +183,7 @@ def resendInvoice():
         password = getPassword(dbGetSenderEmailFromInvoice(int(choice)))
         resendMailInvoice(int(choice), password)
 
+# Function for seperating customers entered in a string
 def separateCustomers(input):
     input_customer = ''
     customers = []
