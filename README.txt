@@ -1,14 +1,15 @@
 Auto_invoicing
+Python is required to run this program
+
 to abort anytime press ctrl+c
   To restart after that enter 'python run.py'
     otherwise just close the terminal
-Python is required to run this program
-This program only works for google emails
+
+This program only works for sending from google emails
   Access for less secure apps needs to be turned on for sender emails
   The program will always send a copy to 'ojaoweir@gmail.com'
 
-For first time run the 'setup.bat' file.
-  If that does not work, try the 'setup_without_venv.bat'
+For first time run the 'setup.bat' file
   If that does not work do the following
 
     If there is not a virtual environment (a folder called 'venv')
