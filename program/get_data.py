@@ -8,7 +8,7 @@ def getCustomer():
     drawLine()
     print('VÄLJ MOTTAGARE')
     drawLine()
-    choice = input("Ange id till mottagare: \n (0 för att se lista, 'XXX' för adminview)\n")
+    choice = input("Ange id till en eller flera mottagare (separera med space): \n (0 för att se lista, 'XXX' för adminview)\n")
     if (choice == '0'):
         return printAllCustomers()
     elif (choice == 'XXX'):

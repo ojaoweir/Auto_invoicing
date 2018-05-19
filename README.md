@@ -1,6 +1,7 @@
 Auto_invoicing
 
 Python is required to run this program
+This program only works for google emails
 
 For first time run the setup.bat file. If that does not work, do the following
 

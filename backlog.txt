@@ -6,3 +6,4 @@ lägg till kommentarer
 fixa så error lyfts om fel password
 uppdatera requirements
 fixa så den faktiskt skickar från senders mail
+flera mottagare samtidigt
