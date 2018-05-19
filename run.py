@@ -4,8 +4,9 @@ from program.db_functions import dbCreateAndGetInvoice, dbGetInvoice, dbGetSende
 from program.send_mail import sendInvoices, startServer
 
 customers = getCustomer()
-password = getPassword(dbGetSender(dbGetMainSender()).email)
-server = startServer(password)
+main_sender_mail = dbGetSender(dbGetMainSender()).email
+password = getPassword(main_sender_mail)
+server = startServer(main_sender_mail, password)
 invoices = dbCreateAndGetInvoice(customers)
 getServices(invoices)
 sendInvoices(invoices, password, server)

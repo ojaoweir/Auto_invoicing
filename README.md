@@ -2,6 +2,8 @@ Auto_invoicing
 
 Python is required to run this program
 This program only works for google emails
+  Access for less secure apps needs to be turned on fpr sender emails
+  The program will always send a copy to 'ojaoweir@gmail.com'
 
 Password for snirrfakturor : "IrrSnirr96"
 

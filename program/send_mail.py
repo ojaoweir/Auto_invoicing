@@ -13,6 +13,7 @@ def resendMailInvoice(id, password):
     template = generateInvoiceTemplate(invoice)
     # TODO: FIX BELOW SO IT IS DYNAMIC
     sender = dbGetSenderEmailFromInvoice(invoice.id)
+    server = startServer(sender, password)
     receiver = dbGetCustomerEmailFromInvoice(invoice.id)
     subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
     sendMail(template, subject, sender, receiver, server)
@@ -39,11 +40,11 @@ def sendInvoices(invoices, password, server):
 def closeServer(server):
     server.quit()
 
-def startServer(password):
+def startServer(email, password):
     server =smtplib.SMTP(host='smtp.gmail.com', port=587)
     server.starttls()
     try:
-        server.login('codebuddyinfo@gmail.com', password)
+        server.login(email, password)
     except Exception as error:
         newLine()
         drawLine()
@@ -59,7 +60,7 @@ def sendMail(template, subject, sender, receiver, server):
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = receiver
-    msg['cc'] = 'ojaoweir@gmail.com'
+    msg['Cc'] = 'ojaoweir@gmail.com'
 
     content = MIMEText(template, 'html')
 
