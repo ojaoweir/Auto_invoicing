@@ -67,3 +67,7 @@ def dbGetSenderNameFromInvoice(id):
 def dbGetSenderEmailFromInvoice(id):
     sender_id = dbGetInvoice(id).sender_id
     return dbGetSender(sender_id).email
+
+def dbGetCustomerEmailFromInvoice(id):
+    receiver_id = dbGetInvoice(id).customer_id
+    return dbGetCustomer(receiver_id).email

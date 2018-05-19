@@ -146,6 +146,13 @@ def adminView():
         print("felaktig input")
         return adminView()
 
+def printSendConfirmation(invoices):
+    newLine()
+    drawLine()
+    for invoice in invoices:
+        print("Faktura #" + str(invoice.id) + "# har skickats till: " + dbGetCustomerEmailFromInvoice(invoice.id))
+    drawLine()
+    print("Stänger av programmet..")
 
 def resendInvoice():
     choice = input("Ange id på den faktura du vill skicka igen: \n(0 för att se alla)\n")

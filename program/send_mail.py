@@ -1,10 +1,11 @@
 import smtplib
 from program.db_functions import dbGetInvoice, dbGetSenderNameFromInvoice
 from program.rendering import generateInvoiceTemplate
-from program.general_functions import waitEnter, newLine
+from program.general_functions import waitEnter, newLine, drawLine
 from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import sys
 
 def resendMailInvoice(id, password):
     server = startServer(password)
@@ -21,8 +22,7 @@ def resendMailInvoice(id, password):
     print(invoice)
     waitEnter()
 
-def sendInvoices(invoices, password):
-    server = startServer(password)
+def sendInvoices(invoices, password, server):
     # TODO: FIX BELOW SO IT IS DYNAMIC
     sender = "ojaoweir@gmail.com"
     receiver = "ojaoweir@gmail.com"
@@ -44,8 +44,12 @@ def startServer(password):
     server.starttls()
     try:
         server.login('codebuddyinfo@gmail.com', password)
-    except Exception as e:
-        print("Felaktigt lösenord. Försök igen")
+    except Exception as error:
+        newLine()
+        drawLine()
+        print("Felaktigt lösenord. Försök igen...")
+        drawLine()
+        sys.exit(1)
     return server
 
 def sendMail(template, subject, sender, receiver, server):
