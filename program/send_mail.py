@@ -42,7 +42,10 @@ def closeServer(server):
 def startServer(password):
     server =smtplib.SMTP(host='smtp.gmail.com', port=587)
     server.starttls()
-    server.login('codebuddyinfo@gmail.com', 'tddd83grupp9')
+    try:
+        server.login('codebuddyinfo@gmail.com', password)
+    except Exception as e:
+        print("Felaktigt lösenord. Försök igen")
     return server
 
 def sendMail(template, subject, sender, receiver, server):
