@@ -38,6 +38,9 @@ def dbAddSender(name, address, city, zip_code, country, email, phone_number, org
 def dbGetMainSender():
     return Sender.query.filter_by(is_main=True).first().id
 
+def dbGetMainSenderEmail():
+    return Sender.query.filter_by(is_main=True).first().email
+
 def dbCreateAndGetInvoice(customers):
     invoices = []
     for customer in customers:

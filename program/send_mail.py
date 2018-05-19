@@ -1,5 +1,5 @@
 import smtplib
-from program.db_functions import dbGetInvoice, dbGetSenderNameFromInvoice
+from program.db_functions import dbGetInvoice, dbGetSenderNameFromInvoice, dbGetMainSenderEmail, dbGetCustomerEmailFromInvoice, dbGetSenderEmailFromInvoice
 from program.rendering import generateInvoiceTemplate
 from program.general_functions import waitEnter, newLine, drawLine
 from string import Template
@@ -12,8 +12,8 @@ def resendMailInvoice(id, password):
     invoice = dbGetInvoice(id)
     template = generateInvoiceTemplate(invoice)
     # TODO: FIX BELOW SO IT IS DYNAMIC
-    sender = "ojaoweir@gmail.com"
-    receiver = "ojaoweir@gmail.com"
+    sender = dbGetSenderEmailFromInvoice(invoice.id)
+    receiver = dbGetCustomerEmailFromInvoice(invoice.id)
     subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
     sendMail(template, subject, sender, receiver, server)
     closeServer(server)
@@ -24,11 +24,11 @@ def resendMailInvoice(id, password):
 
 def sendInvoices(invoices, password, server):
     # TODO: FIX BELOW SO IT IS DYNAMIC
-    sender = "ojaoweir@gmail.com"
-    receiver = "ojaoweir@gmail.com"
+    sender = dbGetMainSenderEmail()
     for invoice in invoices:
         invoice = dbGetInvoice(invoice.id)
         template = generateInvoiceTemplate(invoice)
+        receiver = dbGetCustomerEmailFromInvoice(invoice.id)
         subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
         sendMail(template, subject, sender, receiver, server)
     # Terminate the SMTP session and close the connection
@@ -47,7 +47,7 @@ def startServer(password):
     except Exception as error:
         newLine()
         drawLine()
-        print("Felaktigt lösenord. Försök igen...")
+        print("Nekad inlogging.\nFel lösenord eller ditt konto ej tillåter inlogg.\nFörsök igen...")
         drawLine()
         sys.exit(1)
     return server

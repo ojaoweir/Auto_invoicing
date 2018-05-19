@@ -11,7 +11,7 @@ class Customer(db.Model):
     email = db.Column(db.String(64), index = True, nullable = False)
 
     def __repr__(self):
-        return 'ID:{} \n{} \n {}'.format(self.id, self.name, self.email)
+        return 'ID:{} \n {} \n {}'.format(self.id, self.name, self.email)
 
 class Sender(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,7 +49,7 @@ class Service(db.Model):
     invoice = db.relationship("Invoice", backref="invoice_for_service", foreign_keys = [invoice_id])
 
     def __repr__(self):
-        return '{}st {} {}kr tot'.format(self.amount, self.service_name, self.price_total)
+        return '{}st {} {}kr'.format(self.amount, self.service_name, self.price_total)
 
 
 class Invoice(db.Model):

@@ -59,7 +59,7 @@ def printAllSenders():
     for sender in senders:
         newLine()
         print(sender)
-    drawLine()
+        drawLine()
     newLine()
     waitEnter()
 
@@ -123,7 +123,9 @@ def enterNewSender():
     logo_link = input("Ange länk till logotyp: ")
     complaint_link = input("Ange länk för klagomål: ")
     dbAddSender(name, address, city, zip_code, country, email, phone_number, organisation_number, payment_method,account_number, complaint_link, logo_link)
-
+    drawLine()
+    print("Om du vill att nya fakturor ska skicka från denna måste du uppdatera det i adminView...")
+    waitEnter()
 
 def adminView():
     newLine()
@@ -141,12 +143,11 @@ def adminView():
         enterNewSender()
     elif (choice == '4'):
         resendInvoice()
-        return adminView()
     elif (choice == '5'):
         return getCustomer()
     else:
         print("felaktig input")
-        return adminView()
+    return adminView()
 
 def printSendConfirmation(invoices):
     newLine()
