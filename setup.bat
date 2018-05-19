@@ -1,4 +1,8 @@
 python -m venv venv
-venv\Scripts\activate
-pip install -r Auto_invoicing_code_files\requirement.txt
-launch_application
+pause
+"venv\Scripts\activate"
+pause
+"pip install -r Auto_invoicing_code_files\requirement.txt"
+pause
+"launch_application.bat"
+pause

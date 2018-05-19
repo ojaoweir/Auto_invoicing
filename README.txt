@@ -9,7 +9,7 @@ This program only works for sending from google emails
   Access for less secure apps needs to be turned on for sender emails
   The program will always send a copy to 'ojaoweir@gmail.com'
 
-For first time run the 'setup.bat' file
+For first time run the 'setup.bat' file (takes a while, be patient)
   If that does not work do the following
 
     If there is not a virtual environment (a folder called 'venv')
