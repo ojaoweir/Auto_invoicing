@@ -91,8 +91,8 @@ def getAndAddService(invoices):
     for invoice in invoices:
         dbAddService(service_name, amount, price_per, invoice)
 
-def getPassword():
-    print("Ange ditt password till google: ")
+def getPassword(sender_mail):
+    print("Ange ditt password till " + sender_mail + ":")
     password = getpass()
     return password
 
@@ -152,8 +152,7 @@ def resendInvoice():
         printAllInvoices()
         resendInvoice()
     else:
-        print("Ange lösenord för: " + dbGetSenderEmailFromInvoice(int(choice)))
-        password = getPassword()
+        password = getPassword(dbGetSenderEmailFromInvoice(int(choice)))
         resendMailInvoice(int(choice), password)
 
 def separateCustomers(input):
