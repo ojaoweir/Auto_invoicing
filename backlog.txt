@@ -5,3 +5,4 @@ lägg till kommentarer
 uppdatera requirements
 fixa så den faktiskt skickar från senders mail
 ta bort onödiga imports
+göra någon typ av no-reply?

