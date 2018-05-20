@@ -21,8 +21,3 @@ s = Sender(name = 'Irre-Snirre Fixar', address = 'Tröskaregatan 65', city = 'Li
 
 db.session.add(s)
 db.session.commit()
-
-c = Customer(name ="Per", address = "I huset", city = "Samma som snirr", country = "Se ovan", email="ojaoweir@gmail.com")
-
-db.session.add(c)
-db.session.commit()
