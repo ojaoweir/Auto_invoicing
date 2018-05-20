@@ -5,7 +5,7 @@ from program.general_functions import waitEnter, newLine, drawLine
 from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import sys
+import sys, time
 
 # resends the invoice with given id
 def resendMailInvoice(id, password):
@@ -60,6 +60,7 @@ def startServer(email, password):
         drawLine()
         print("Nekad inlogging.\nFel lösenord eller ditt konto ej tillåter inlogg.\nFörsök igen...")
         drawLine()
+        time.sleep(2)
         sys.exit(1)
     return server
 

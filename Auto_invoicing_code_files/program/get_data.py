@@ -2,6 +2,7 @@ from .db_functions import *
 from .general_functions import drawLine, newLine, waitEnter
 from getpass import getpass
 from .send_mail import resendMailInvoice
+import time
 
 # Collect which customers that will receive the invoice
 def getCustomer():
@@ -172,6 +173,7 @@ def printSendConfirmation(invoices):
         print("Faktura #" + str(invoice.id) + "# har skickats till: " + dbGetCustomerEmailFromInvoice(invoice.id))
     drawLine()
     print("Stänger av programmet..")
+    time.sleep(2)
 
 # function to enter which invoice will be sent again
 def resendInvoice():

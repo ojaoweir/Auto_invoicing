@@ -1,7 +1,4 @@
-avrunda pris 2 decimaler
+﻿avrunda pris 2 decimaler
 uppdatera readme
-fixa bat f�r att g�ra setup
-l�gg till kommentarer
-uppdatera requirements
-ta bort on�diga imports
-g�ra n�gon typ av no-reply?
+ta bort onödiga imports
+göra någon typ av no-reply?

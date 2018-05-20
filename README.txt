@@ -1,9 +1,7 @@
 Auto_invoicing
-Python is required to run this program
+Python 3 is required to run this program
 
 to abort anytime press ctrl+c
-  To restart after that enter 'python run.py'
-    otherwise just close the terminal
 
 This program only works for sending from google emails
   Access for less secure apps needs to be turned on for sender emails
