@@ -7,8 +7,6 @@
   <style>
   .services-table {
     text-align: center;
-    border:solid;
-    border-width:1px;
     border-color:grey;
     min-height: 300px;
   }
@@ -18,12 +16,60 @@
   .services-table-head {
     background-color:lightgrey;
     font-size:1.5em;
-    border-bottom: solid;
-    border-width: 1px;
-    border-color:black;
   }
   .amount-of-service {
     width: 10%;
+  }
+  .name-of-service {
+    width: 60%;
+  }
+  .price-service {
+    width: 15%;
+  }
+  .total-price-block-outside-border{
+    margin-left:auto;
+    margin-right:0;
+    width:60%;
+  }
+  .total-price-block {
+    text-align:right;
+    font-size: 1.5em;
+  }
+  .surround-border {
+  border: solid;
+  border-color:black;
+  border-width:1px;
+  }
+  .total-price {
+    display: flex;
+  }
+  .bottom-border {
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: black;
+  }
+  .total-price-text {
+    width:75%;
+  }
+  .border-right {
+    border-right: solid;
+    border-width: 1px;
+    border-color: black;
+  }
+  .total-price-sum {
+    width: 25%;
+  }
+  .info-text {
+    font-size: 1em;
+    color:darkgrey;
+  }
+  .payment-details {
+    text-align: center;
+    font-size:1.5em;
+    margin-top: 50px;
+  }
+  .bold-text {
+    font-weight: bold;
   }
   </style>
   </head>
@@ -47,12 +93,12 @@
       <div class="invoice-header" style="font-size: 3em; padding-bottom:0px;">Faktura</div>
       <div class="invoice-number"style="font-size: 1.5em; color:grey;">#{{ invoice.id }}#</div>
     </div>
-    <div class="services-table">
-      <div class="services-table-head service-row">
+    <div class="services-table surround-border">
+      <div class="services-table-head service-row bottom-border">
         <div class="amount-of-service"> antal </div>
-        <div class="name-of-service-head" style="width: 60%;"> tjänst </div>
-        <div class="price-per-service-head" style="width: 15%;"> pris styck </div>
-        <div class="price-tot-of-service-head" style="width: 15%;"> pris tot </div>
+        <div class="name-of-service"> tjänst </div>
+        <div class="price-service"> pris styck </div>
+        <div class="price-service"> pris tot </div>
       </div>
       <div class="all-services-list">
         {% for service in services %}
@@ -60,54 +106,56 @@
             <div class="amount-of-service">
               {{ service.amount }}
             </div>
-            <div class="service-name" style="width: 60%;">
+            <div class="name-of-service">
               {{ service.service_name }}
             </div>
-            <div class="service-price-per" style="width: 15%;">
+            <div class="price-service">
               {{ service.price_per }}
             </div>
-            <div class="service-price-tot" style="width: 15%;">
+            <div class="price-service">
               {{ service.price_total }}
             </div>
           </div>
         {% endfor %}
       </div>
     </div>
-    <div class="total-price-block-outside-border" style="margin-left:auto; margin-right:0; width:60%;">
-      <div class="total-price-block" style="text-align:right; font-size: 1.5em; border: solid; border-color:black; border-width:1px;">
-        <div class="total-price" style="border-bottom: solid; display:flex;">
-          <div class="total-price-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
+    <div class="total-price-block-outside-border">
+      <div class="total-price-block surround-border">
+        <div class="total-price bottom-border">
+          <div class="total-price-text border-right">
             Totalt belopp
           </div>
-          <div class="total-price-sum" style="width: 25%;">
+          <div class="total-price-sum">
             {{ total_price_for_all }}
           </div>
         </div>
-        <div class="total-price-vat" style="display:flex;">
-          <div class="total-price-vat-sum-text" style="border-right:solid; width: 75%;  border-width:1px;">
+        <div class="total-price">
+          <div class="total-price-text border-right">
             Totalt belopp inklusive moms*
           </div>
-          <div class="total-price-vat-sum" style="width: 25%;">
+          <div class="total-price-sum">
             {{ total_price_for_all }}
           </div>
         </div>
       </div>
-      <div class="tax-not-included" style="font-size: 1em; color:darkgrey;">
+      <div class="info-text">
         *Tjänster säljes svart, ingen moms betalas
       </div>
     </div>
-    <div class="payment-details-row" style="display:flex; margin-top: 50px; text-align: center; border: solid; border-color:black; border-width:1px; font-size:1.5em;">
-      <div class="payment-method" style="border-right:solid; border-width:1px; font-weight:bold; width:30%;">
-        {{ sender.payment_method }}
-      </div>
-      <div class="payment-account" style="border-right:solid; border-width:1px; width: 40%;">
-        {{ sender.account_number }}
-      </div>
-      <div class="payment-account" style="width:30%;">
-        {{ total_price_for_all }} kr
+    <div class="container">
+      <div class="payment-details row surround-border">
+        <div class="bold-text col-sm-4">
+          {{ sender.payment_method }}
+        </div>
+        <div class="col-sm-4">
+          {{ sender.account_number }}
+        </div>
+        <div class="col-sm-4">
+          {{ total_price_for_all }} kr
+        </div>
       </div>
     </div>
-    <div class="disclosure-text" style="text-align:center; color:darkgrey; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
+    <div class="disclosure-text info-text" style="text-align:center; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
       Inbetalning ska ske snabbast möjligt. Vid för lång väntan kommer fakturan vidarebefordras till Hubbe. Hubbe är läskig. Vid eventuella klagomål eller frågor
       <a href={{sender.complaint_link}} style="text-decoration: underline; color:blue;">klicka här.</a>
     </div>
