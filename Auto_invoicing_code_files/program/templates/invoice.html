@@ -30,7 +30,9 @@
   .total-price-block-outside-border{
     margin-left:auto;
     margin-right:0;
-    width:60%;
+    display:table;
+    min-width:25%;
+    max-width:85%;
   }
   .total-price-block {
     text-align:right;
@@ -103,6 +105,9 @@
     font-size: 1.5em;
     color: grey;
   }
+  .padding-right {
+    padding-right: 3px;
+  }
   </style>
   </head>
   <body>
@@ -155,37 +160,17 @@
       <table class="full-size-table total-price-block table-responsive-md surround-border">
         <tbody>
           <tr>
-            <td class="bottom-border border-right">Totalt belopp</td>
-            <td class="bottom-border">{{ total_price_for_all }} kr</td>
+            <td class="bottom-border border-right padding-right">Totalt belopp</td>
+            <td class="bottom-border padding-right">{{ total_price_for_all }} kr</td>
           </tr>
-          <tr class="bottom-border">
-            <td class="border-right">Totalt belopp inklusive moms*</td>
+          <tr class="bottom-border padding-right">
+            <td class="border-right padding-right">Totalt belopp inklusive moms*</td>
             <td>{{ total_price_for_all }} kr</td>
           </tr>
         </tbody>
       </table>
       <div class="info-text">
         *Tjänster säljes svart, ingen moms betalas
-      </div>
-
-
-      <div class="total-price-block surround-border">
-        <div class="total-price bottom-border">
-          <div class="total-price-text border-right">
-            Totalt belopp
-          </div>
-          <div class="total-price-sum">
-            {{ total_price_for_all }}
-          </div>
-        </div>
-        <div class="total-price">
-          <div class="total-price-text border-right">
-            Totalt belopp inklusive moms*
-          </div>
-          <div class="total-price-sum">
-            {{ total_price_for_all }}
-          </div>
-        </div>
       </div>
       <div class="info-text">
         *Tjänster säljes svart, ingen moms betalas
