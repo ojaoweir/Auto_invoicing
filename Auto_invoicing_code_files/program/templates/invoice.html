@@ -108,6 +108,9 @@
   .padding-right {
     padding-right: 3px;
   }
+  .wide-element {
+    min-width: 55%;
+  }
   </style>
   </head>
   <body>
@@ -131,30 +134,26 @@
       <div class="invoice-number">#{{ invoice.id }}#</div>
     </div>
     <div class="services-table surround-border">
-      <div class="services-table-head service-row bottom-border">
-        <div class="amount-of-service"> antal </div>
-        <div class="name-of-service"> tjänst </div>
-        <div class="price-service"> pris styck </div>
-        <div class="price-service"> pris tot </div>
-      </div>
-      <div class="all-services-list">
+    <table class="full-size-table table-responsive-md">
+      <thead class="services-table-head">
+        <tr>
+          <td>antal</td>
+          <td class="wide-element">tjänst</td>
+          <td>pris per</td>
+          <td>pris totalt</td>
+        </tr>
+      </thead>
+      <tbody>
         {% for service in services %}
-          <div class="service-row">
-            <div class="amount-of-service">
-              {{ service.amount }}
-            </div>
-            <div class="name-of-service">
-              {{ service.service_name }}
-            </div>
-            <div class="price-service">
-              {{ service.price_per }}
-            </div>
-            <div class="price-service">
-              {{ service.price_total }}
-            </div>
-          </div>
+          <tr>
+            <td>{{ service.amount }}</td>
+            <td class="wide-element">{{ service.service_name }}</td>
+            <td>{{ service.price_per }}</td>
+            <td>{{ service.price_total }}</td>
+          </tr>
         {% endfor %}
-      </div>
+      </tbody>
+    </table>
     </div>
     <div class="total-price-block-outside-border">
       <table class="full-size-table total-price-block table-responsive-md surround-border">
@@ -169,9 +168,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="info-text">
-        *Tjänster säljes svart, ingen moms betalas
-      </div>
       <div class="info-text">
         *Tjänster säljes svart, ingen moms betalas
       </div>
