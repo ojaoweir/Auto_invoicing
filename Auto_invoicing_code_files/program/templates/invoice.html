@@ -111,6 +111,9 @@
   .wide-element {
     min-width: 55%;
   }
+  .row-element {
+    padding: 3px;
+  }
   </style>
   </head>
   <body>
@@ -137,19 +140,19 @@
     <table class="full-size-table table-responsive-md">
       <thead class="services-table-head">
         <tr>
-          <td class="border-right bottom-border">antal</td>
-          <td class="border-right wide-element bottom-border">tjänst</td>
-          <td class="border-right bottom-border">pris per</td>
-          <td class="bottom-border">pris totalt</td>
+          <td class="row-element border-right bottom-border">antal</td>
+          <td class="row-element border-right wide-element bottom-border">tjänst</td>
+          <td class="row-element border-right bottom-border">pris per</td>
+          <td class="row-element bottom-border">pris totalt</td>
         </tr>
       </thead>
       <tbody>
         {% for service in services %}
           <tr>
-            <td>{{ service.amount }}</td>
-            <td class="wide-element">{{ service.service_name }}</td>
-            <td>{{ service.price_per }}</td>
-            <td>{{ service.price_total }}</td>
+            <td class="row-element">{{ service.amount }}</td>
+            <td class="row-element wide-element">{{ service.service_name }}</td>
+            <td class="row-element">{{ service.price_per }}</td>
+            <td class="row-element">{{ service.price_total }}</td>
           </tr>
         {% endfor %}
       </tbody>
