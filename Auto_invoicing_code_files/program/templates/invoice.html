@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <style>
   .services-table {
@@ -61,15 +62,35 @@
   }
   .info-text {
     font-size: 1em;
-    color:darkgrey;
+    color:dimgrey;
   }
   .payment-details {
-    text-align: center;
     font-size:1.5em;
     margin-top: 50px;
   }
+  .full-size-table {
+    width:100%;
+    text-align:center;
+  }
   .bold-text {
     font-weight: bold;
+  }
+  .disclosure-text {
+    text-align:center;
+    margin-top: 30px;
+    padding-bottom: 20px;
+  }
+  .thick-border {
+    border-width: 3px;
+  }
+  .invoice-footer {
+    margin-top: 15px;
+    font-size: 0.8em;
+  }
+  .invoice-footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 10px;
   }
   </style>
   </head>
@@ -142,39 +163,37 @@
         *Tjänster säljes svart, ingen moms betalas
       </div>
     </div>
-    <div class="container">
-      <div class="payment-details row surround-border">
-        <div class="bold-text col-sm-4">
-          {{ sender.payment_method }}
-        </div>
-        <div class="col-sm-4">
-          {{ sender.account_number }}
-        </div>
-        <div class="col-sm-4">
-          {{ total_price_for_all }} kr
-        </div>
-      </div>
-    </div>
-    <div class="disclosure-text info-text" style="text-align:center; margin-top: 30px; text-align:center; padding-bottom: 20px; border-bottom:solid; border-color:black; border-width: 3px;">
+      <table class="full-size-table table-responsive-xl payment-details surround-border">
+        <tbody>
+          <tr>
+            <td> <div class="bold-text border-right">{{ sender.payment_method }}<div></td>
+            <td><div class="border-right">{{ sender.account_number }}<div></td>
+            <td>{{ total_price_for_all }} kr</td>
+          </tr>
+        </tbody>
+      </table>
+    <div class="disclosure-text thick-border bottom-border info-text">
       Inbetalning ska ske snabbast möjligt. Vid för lång väntan kommer fakturan vidarebefordras till Hubbe. Hubbe är läskig. Vid eventuella klagomål eller frågor
-      <a href={{sender.complaint_link}} style="text-decoration: underline; color:blue;">klicka här.</a>
+      <a href={{sender.complaint_link}}>klicka här.</a>
     </div>
-    <div class="invoice-footer" style="text-align:center; margin-top:15px; color:darkgrey; font-size:0.7em;">
-      <div class="invoice-footer-top" style="display: flex;">
-        <div class="sender-address" style="width:50%;">
-          {{ sender.name }} <br>
-          {{ sender.address }} <br>
-          {{ sender.zip_code}} {{ sender.city }}
-        </div>
-        <div class="sender-contact" style="width:50%;">
-          OrgNr: {{ sender.organisation_number }} <br>
-          Epost: {{ sender.email }} <br>
-          Telnr: {{ sender.phone_number }}
-        </div>
-      </div>
-      <div class="invoice-footer-bottom" style="margin-top: 10px;">
-        {{sender.payment_method}}: {{sender.account_number}}
-      </div>
+    <table class="full-size-table table-responsive-xl info-text invoice-footer">
+      <tbody>
+        <tr>
+          <td>{{ sender.name }}</td>
+          <td>{{ sender.organisation_number }}</td>
+        </tr>
+        <tr>
+          <td>{{ sender.address }}</td>
+          <td>Epost: {{ sender.email }}</td>
+        </tr>
+        <tr>
+          <td>{{ sender.zip_code}} {{ sender.city }}</td>
+          <td>Telnr: {{ sender.phone_number }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="invoice-footer-bottom info-text">
+      {{sender.payment_method}}: {{sender.account_number}}
     </div>
   </body>
 </html>
