@@ -65,12 +65,12 @@
     color:dimgrey;
   }
   .payment-details {
+    text-align:center;
     font-size:1.5em;
     margin-top: 50px;
   }
   .full-size-table {
     width:100%;
-    text-align:center;
   }
   .bold-text {
     font-weight: bold;
@@ -84,6 +84,7 @@
     border-width: 3px;
   }
   .invoice-footer {
+    text-align:center;
     margin-top: 15px;
     font-size: 0.8em;
   }
@@ -91,6 +92,16 @@
     text-align: center;
     font-size: 0.8em;
     margin-top: 10px;
+  }
+  .invoice-number-box {
+    text-align: center;
+  }
+  .invoice-header {
+    font-size: 3em;
+  }
+  .invoice-number {
+    font-size: 1.5em;
+    color: grey;
   }
   </style>
   </head>
@@ -110,9 +121,9 @@
       </div>
     </div>
     <!-- TODO ANVÄND ROW OVAN -->
-    <div class="invoice-number-box" style="text-align:center;">
-      <div class="invoice-header" style="font-size: 3em; padding-bottom:0px;">Faktura</div>
-      <div class="invoice-number"style="font-size: 1.5em; color:grey;">#{{ invoice.id }}#</div>
+    <div class="invoice-number-box">
+      <div class="invoice-header">Faktura</div>
+      <div class="invoice-number">#{{ invoice.id }}#</div>
     </div>
     <div class="services-table surround-border">
       <div class="services-table-head service-row bottom-border">
@@ -141,6 +152,23 @@
       </div>
     </div>
     <div class="total-price-block-outside-border">
+      <table class="full-size-table total-price-block table-responsive-md surround-border">
+        <tbody>
+          <tr>
+            <td class="bottom-border border-right">Totalt belopp</td>
+            <td class="bottom-border">{{ total_price_for_all }} kr</td>
+          </tr>
+          <tr class="bottom-border">
+            <td class="border-right">Totalt belopp inklusive moms*</td>
+            <td>{{ total_price_for_all }} kr</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-text">
+        *Tjänster säljes svart, ingen moms betalas
+      </div>
+
+
       <div class="total-price-block surround-border">
         <div class="total-price bottom-border">
           <div class="total-price-text border-right">
@@ -166,7 +194,7 @@
       <table class="full-size-table table-responsive-xl payment-details surround-border">
         <tbody>
           <tr>
-            <td> <div class="bold-text border-right">{{ sender.payment_method }}<div></td>
+            <td><div class="bold-text border-right">{{ sender.payment_method }}<div></td>
             <td><div class="border-right">{{ sender.account_number }}<div></td>
             <td>{{ total_price_for_all }} kr</td>
           </tr>
