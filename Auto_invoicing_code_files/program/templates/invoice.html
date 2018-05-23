@@ -126,6 +126,16 @@
     max-width: 100%;
     height:auto;
   }
+  .name-div-placing {
+     margin-right: 5%;
+     margin-left: auto;
+     width: 25%;
+     max-width: 45%;
+  }
+  .date {
+    text-align:right;
+    margin-bottom: 10px;
+  }
   </style>
   </head>
   <body>
@@ -133,8 +143,8 @@
       <div class="surround-logo-div">
         <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
       </div>
-      <div class="surround-namebox-div" style="margin-right: 5%; margin-left: auto; width: 25%; max-width: 45%;">
-        <div class="date" style="color:darkgrey; font-size:1em; text-align:right; margin-bottom: 10px;">{{ invoice_date }}</div>
+      <div class="name-div-placing">
+        <div class="date info-text">{{ invoice_date }}</div>
         <div class="namebox" style="padding: 7px; border: solid; border-color: black; border-width: 1px;">
           <div class="namebox_namerow" style="margin-bottom:10px;">{{ customer.name }}</div>
           {{ customer.address }} <br>
