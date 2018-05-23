@@ -129,38 +129,36 @@
   .name-div-placing {
      margin-right: 5%;
      margin-left: auto;
-     width: 25%;
-     max-width: 45%;
   }
   .date {
     text-align:right;
     margin-bottom: 10px;
   }
+  .name-box {
+    margin-left: auto;
+    margin-right: 0;
+    padding: 5px;
+    min-width: 15%;
+    max-width: 50%;
+    font-size: 0.8em;
+  }
   </style>
   </head>
   <body>
+    <div class="date info-text">{{ invoice_date }}</div>
     <div class="invoice-top">
       <div class="surround-logo-div">
         <img class="invoice-logo" src={{sender.logo_link}} alt={{sender.name}}></img>
       </div>
-      <div class="name-div-placing">
-        <div class="date info-text">{{ invoice_date }}</div>
-        <div class="namebox" style="padding: 7px; border: solid; border-color: black; border-width: 1px;">
-          <div class="namebox_namerow" style="margin-bottom:10px;">{{ customer.name }}</div>
-          {{ customer.address }} <br>
-          {{ customer.city }} <br>
-          {{ customer.country }}
-          <table class="table-responsive-md">
-            <tbody>
-              <tr><td>{{ customer.name }}</td></tr>
-              <tr></tr>
-              <tr><td>{{ customer.address }}</td></tr>
-              <tr><td>{{ customer.city }}</td></tr>
-              <tr><td>{{ customer.country }}</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <table class="table-responsive-md surround-border name-box">
+        <tbody>
+          <tr><td>{{ customer.name }}</td></tr>
+          <tr></tr>
+          <tr><td>{{ customer.address }}</td></tr>
+          <tr><td>{{ customer.city }}</td></tr>
+          <tr><td>{{ customer.country }}</td></tr>
+        </tbody>
+      </table>
     </div>
     <!-- TODO ANVÄND ROW OVAN -->
     <div class="invoice-number-box">
