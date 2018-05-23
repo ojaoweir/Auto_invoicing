@@ -19,7 +19,7 @@ For first time run the 'setup.bat' file (takes a while, be patient)
       venv\Scripts\activate (windows)
 
     Install packages included in requirements.txt
-      pip install -r requirement.txt  
+      pip install -r requirement.txt
         (I had to upgrade setuptools for weasyprint to work 'pip install --upgrade setuptools')
 
 
@@ -30,3 +30,4 @@ To start the app run the launch_application.bat
       enter python run.py
 
 To enter new customer, account to send from, or change account to send from enter adminView
+  NOTE THAT THIS DOES NOT WORK WELL ON OUTLOOK APP
