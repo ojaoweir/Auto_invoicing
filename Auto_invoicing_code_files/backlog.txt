@@ -2,3 +2,5 @@
 uppdatera readme
 ta bort onödiga imports
 göra någon typ av no-reply?
+SPARA ENDAST SENAST 15 fakturor
+Möjlighet att ta bort mottagare - sender
