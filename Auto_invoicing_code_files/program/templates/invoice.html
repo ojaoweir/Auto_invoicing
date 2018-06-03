@@ -168,8 +168,7 @@
       <!-- TODO ANVÄND ROW OVAN -->
       <div class="invoice-number-box">
         <div class="invoice-header">Faktura</div>
-        <div class="invoice-number">#
-          {% for x in range(0,6-id_length) %}0{% endfor %}{{ invoice.id }}#</div>
+        <div class="invoice-number">#{% for x in range(0,6-id_length) %}0{% endfor %}{{ invoice.id }}#</div>
       </div>
       <div class="services-table surround-border">
       <table class="full-size-table table-responsive-md">

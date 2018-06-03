@@ -63,7 +63,7 @@ class Invoice(db.Model):
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.id'), nullable = False)
     sender_id = db.Column(db.Integer, db.ForeignKey('sender.id'), nullable = False)
     # this is a link to all services handled by the invoice
-    payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id)
+    payed_service = db.relationship("Service", primaryjoin=id==Service.invoice_id, cascade="all,delete")
 
     def __repr__(self):
         return 'ID:{}\nmottagare:{}\ndatum:{}\npris:{}\n{}'.format(self.id, self.customer_id, self.date, self.price, self.payed_service)

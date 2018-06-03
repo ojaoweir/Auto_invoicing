@@ -1,5 +1,6 @@
 from .models import Customer, Invoice, Service, Sender
 from program import db
+from sqlalchemy import func
 
 def dbGetAllInvoices():
     return Invoice.query.all()
@@ -44,6 +45,13 @@ def dbGetMainSender():
 
 def dbGetMainSenderEmail():
     return Sender.query.filter_by(is_main=True).first().email
+
+# The function below deletes old invoice so no to get overflow in database
+def dbRemoveOldInvoices():
+    limit = Invoice.query.order_by(Invoice.id.desc()).first().id - 25
+    print(limit)
+    Invoice.query.filter(Invoice.id <= limit).delete()
+    db.session.commit()
 
 # creates a new invoice in database
 def dbCreateAndGetInvoice(customers):
