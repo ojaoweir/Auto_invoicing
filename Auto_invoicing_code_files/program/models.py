@@ -73,7 +73,7 @@ class Invoice(db.Model):
         price = 0
         for service in self.payed_service:
             price = price + service.price_total
-        self.price = price
+        self.price = round(price,2)
 
     # function to get the date of the invoice
     def getDate(self):

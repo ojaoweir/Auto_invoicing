@@ -1,6 +1,2 @@
-﻿SPARA ENDAST SENASTE 25 fakturor
-Möjlighet att ta bort mottagare - sender
-skapa en pdf som är mall för vilka variabler var
-Fyll ut fakturanummer till 6 siffror
+﻿skapa en pdf som är mall för vilka variabler var
 QR-kod för swish?
-avrunda pris till 2decimaler

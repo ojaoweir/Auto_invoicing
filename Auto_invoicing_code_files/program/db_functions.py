@@ -49,7 +49,6 @@ def dbGetMainSenderEmail():
 # The function below deletes old invoice so no to get overflow in database
 def dbRemoveOldInvoices():
     limit = Invoice.query.order_by(Invoice.id.desc()).first().id - 25
-    print(limit)
     Invoice.query.filter(Invoice.id <= limit).delete()
     db.session.commit()
 
@@ -69,8 +68,9 @@ def dbCreateAndGetInvoice(customers):
 
 # creates new services connected to given invoice
 def dbAddService(service_name, amount, price_per, invoice):
+    price_total = round(price_per*float(amount),2)
     s = Service(service_name = service_name, price_per = price_per,
-                price_total = price_per*float(amount), amount = amount, invoice_id = invoice.id)
+                price_total = price_total, amount = amount, invoice_id = invoice.id)
     db.session.add(s)
     db.session.commit()
 

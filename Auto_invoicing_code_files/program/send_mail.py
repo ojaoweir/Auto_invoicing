@@ -1,6 +1,6 @@
 import smtplib
 from program.db_functions import dbGetInvoice, dbGetSenderNameFromInvoice, dbGetMainSenderEmail, dbGetCustomerEmailFromInvoice, dbGetSenderEmailFromInvoice
-from program.rendering import generateInvoiceTemplate
+from program.rendering import generateInvoiceTemplate, generateInvoiceIdString
 from program.general_functions import waitEnter, newLine, drawLine
 from string import Template
 from email.mime.multipart import MIMEMultipart
@@ -18,7 +18,7 @@ def resendMailInvoice(id, password):
     # sets up server
     server = startServer(sender, password)
     receiver = dbGetCustomerEmailFromInvoice(invoice.id)
-    subject = 'Omskickad faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id #' + str(invoice.id) + '#'
+    subject = 'Omskickad faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id ' + generateInvoiceIdString(invoice.id)
     # sends the mail and closes the connection
     sendMail(template, subject, sender, receiver, server)
     closeServer(server)
@@ -37,7 +37,7 @@ def sendInvoices(invoices, password, server):
         invoice = dbGetInvoice(invoice.id)
         template = generateInvoiceTemplate(invoice)
         receiver = dbGetCustomerEmailFromInvoice(invoice.id)
-        subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id: #' + str(invoice.id) + '#'
+        subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id ' + generateInvoiceIdString(invoice.id)
         sendMail(template, subject, sender, receiver, server)
     # Closes the server connection
     closeServer(server)
