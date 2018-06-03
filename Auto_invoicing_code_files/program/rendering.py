@@ -13,11 +13,13 @@ def generateInvoiceTemplate(invoice):
     invoice_date = invoice.getDate()
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("program/templates/invoice.html")
+    id_length = len(str(invoice.id))
     # below is defining the data so that the template can read it
     template_variables = {"sender": sender,
                         "customer": customer,
                         "invoice": invoice,
                         "services":services,
                         "total_price_for_all": total_price_for_all,
-                        "invoice_date": invoice_date}
+                        "invoice_date": invoice_date,
+                        "id_length": id_length}
     return template.render(template_variables)
