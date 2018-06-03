@@ -148,7 +148,7 @@ def adminView():
     drawLine()
     print('ADMINVIEW')
     drawLine()
-    choice = input("Ange vad du vill göra:\n(0 - skapa ny kund, 1 - se lista av senders, 2 - byt sender, 3 - skapa ny sender, 4 - skicka om faktura, 5 - lämna adminView)\n")
+    choice = input("Ange vad du vill göra:\n(0 - skapa ny kund, 1 - se lista av senders, 2 - byt sender, 3 - skapa ny sender, 4 - skicka om faktura, 5 - Ta bort kund, 6 - lämna adminView)\n")
     if (choice == '0'):
         enterNewCustomer()
     elif (choice == '1'):
@@ -160,10 +160,21 @@ def adminView():
     elif (choice == '4'):
         resendInvoice()
     elif (choice == '5'):
+        removeCustomer()
+    elif (choice == '6'):
         return getCustomer()
     else:
         print("felaktig input")
     return adminView()
+
+# Gets input on which customer to remove
+def removeCustomer():
+    newLine()
+    drawLine()
+    choice = input("Ange id på den kund du vill ta bort:\n")
+    dbDeleteCustomer(int(choice))
+
+
 
 # Prints a list of all invoice that has been sent and to what email
 def printSendConfirmation(invoices):

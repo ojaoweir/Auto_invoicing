@@ -53,6 +53,10 @@ def dbRemoveOldInvoices():
     Invoice.query.filter(Invoice.id <= limit).delete()
     db.session.commit()
 
+def dbDeleteCustomer(id):
+    Customer.query.filter(Customer.id == id).delete()
+    db.session.commit()
+
 # creates a new invoice in database
 def dbCreateAndGetInvoice(customers):
     invoices = []
