@@ -18,7 +18,7 @@ def resendMailInvoice(id, password):
     # sets up server
     server = startServer(sender, password)
     receiver = dbGetCustomerEmailFromInvoice(invoice.id)
-    subject = 'Omskickad faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id ' + generateInvoiceIdString(invoice.id)
+    subject = 'Omskickad faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', ID: ' + generateInvoiceIdString(invoice.id)
     # sends the mail and closes the connection
     sendMail(template, subject, sender, receiver, server)
     closeServer(server)
@@ -37,7 +37,7 @@ def sendInvoices(invoices, password, server):
         invoice = dbGetInvoice(invoice.id)
         template = generateInvoiceTemplate(invoice)
         receiver = dbGetCustomerEmailFromInvoice(invoice.id)
-        subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', id ' + generateInvoiceIdString(invoice.id)
+        subject = 'Ny faktura från ' + dbGetSenderNameFromInvoice(invoice.id) + ', ID: ' + generateInvoiceIdString(invoice.id)
         sendMail(template, subject, sender, receiver, server)
     # Closes the server connection
     closeServer(server)
