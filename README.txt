@@ -7,6 +7,8 @@ This program only works for sending from google emails
   Access for less secure apps needs to be turned on for sender emails
   The program will always send a copy to 'ojaoweir@gmail.com'
 
+This program does not work sending to outlook emails. (hotmail, outlook, live etc)
+
 It will only save the latest 25 invoices in the database
 
 For first time run the 'setup.bat' file (takes a while, be patient)
